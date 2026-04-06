@@ -1,0 +1,201 @@
+/* --- 1. 基本リセット --- */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+} */
+
+/* --- 2. 外枠（中央寄せの要） --- */
+/* .hub-outer-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* --- 3. 16:9のメインコンテナ --- */
+/* .hub-section {
+    position: relative;
+    height: 100vh; 
+    width: calc(100vh * 16 / 9);  */
+    
+    /* 縦長画面への対応：幅が画面を超えないように制限 */
+    /* max-width: 100vw;
+    aspect-ratio: 16 / 9;
+
+    background: #000;
+    overflow: hidden;
+    flex-shrink: 0; 親要素によって潰されるのを防ぐ */
+/* } */
+
+/* --- 4. 動画・視認性オーバーレイ --- */
+/* .hub-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+} */
+
+/* 左右・下を暗くするグラデーション */
+/* .hub-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 30%),
+        linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 30%),
+        linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 20%);
+    z-index: 5;
+    pointer-events: none;
+} */
+
+/* --- 5. UI要素 --- */
+
+/* ロゴ配置 -------------------------------------*/
+/* .video-title-container {
+    position: absolute;
+    z-index: 10;
+    left: 40px; 
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+} */
+
+/* #video-title-img {
+    display: block;
+    width: 20vw;
+    max-width: 600px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+} */
+
+/* 右側インデックス ---------------------------*/
+/* 1. 右側のコンテナ */
+/* .video-side-index {
+    position: absolute;
+    z-index: 20;
+    right: 30px; 
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end; 
+} */
+
+/* 2. インデックスアイテム */
+/* .index-item {
+    position: relative;
+    width: 4px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    
+    transition: width 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                background 0.3s ease, 
+                height 0.3s ease; */
+
+    /* テキスト配置用の設定 */
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    padding: 0 15px 0 0;
+    
+    overflow: visible;
+    border: none;
+    margin: 0;
+} */
+
+/* 当たり判定エリア（透明な広がり） */
+/* .index-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    right: 0;
+    width: 250px;
+    left: auto;
+    background: transparent;
+    z-index: 1;
+} */
+
+/* 作品タイトルのテキストスタイル */
+/* .index-item-title {
+    color: #000;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px); 
+    transition: all 0.3s ease;
+    z-index: 2;
+} */
+
+/* ホバー演出 */
+
+/* 1. 棒を左に伸ばす */
+/* .index-item:hover {
+    width: 200px; 
+    background: rgba(255, 255, 255, 0.95);
+} */
+
+/* 2. 文字を浮き上がらせる */
+/* .index-item:hover .index-item-title {
+    opacity: 1;
+    transform: translateX(0);
+} */
+
+/* 4. アクティブ（現在再生中）の状態 */
+/* .index-item.active {
+    background: #fff;
+    width: 6px; 
+    height: 60px;
+} */
+
+/* 再生中かつホバーした時 */
+/* .index-item.active:hover {
+    width: 200px;
+}
+ */
+/* 下：進捗バー ------------------------------*/
+/* .video-progress-bar-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.1);
+    z-index: 30;
+} */
+
+/* .video-progress-bar-inner {
+    height: 100%;
+    background: #fff;
+    width: 0%;
+    transition: width 0.25s linear;
+} */
+
+
+
+

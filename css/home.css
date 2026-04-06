@@ -1,0 +1,344 @@
+/* =========================================
+   1. デザイン変数 (使いやすさ向上のため)
+   ========================================= */
+:root {
+    /* 背景全体のグラデーション (真っ黒から濃い灰色) */
+    /* --site-bg-top: #000000;
+    --site-bg-bottom: #868686; */
+
+    /* 背景全体単色 */
+    --site-bg: #191822;
+    
+    /* ハブ・セクションの「ゲーム画像」背景のプレースホルダー。*/
+    /* --game-image-bg: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/temp.png'); */
+    
+    /* ガラスモーフィズム (ハブパネル) */
+    --glass-bg: rgba(0, 0, 0, 0.4); /* ラフより少し透過を上げて背景を活かす */
+    --glass-blur: 8px; /* ラフの「半透明」を表現 */
+    --glass-border: rgba(255, 255, 255, 0.08); /* 非常に薄い枠線 */
+    
+    /* テキストカラー */
+    --text-color: #ffffff;
+    --accent-color: #00ffff; /* ラフのメモ書きにある水色。アクセントに。 */
+    
+    /* フォントファミリー */
+    --font-family-main: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    --font-family-code: "Courier New", Courier, monospace; /* ゲームらしさを出すために等幅フォントへ */
+    
+    /* セクションの高さ */
+    --hub-section-height: 100vh; /* 最上部は画面いっぱいに */
+    --about-me-min-height: 100vh; /* About Meも十分な高さを */
+}
+
+/* =========================================
+   2. 全体のリセット & ベース設定
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* サイト全体に適用される滑らかな縦グラデーション。ラフの「濃い灰色へ」を実装 */
+    /* background: linear-gradient(to bottom, var(--site-bg-top) 0%, var(--site-bg-bottom) 100%); */
+    /* background-attachment: fixed; 縦長サイトに合わせ、スクロールしても固定 */
+
+    /* サイト全体の背景色適応 */
+    background: var(--site-bg);
+    
+    color: var(--text-color);
+    font-family: var(--font-family-main);
+    line-height: 1.6;
+    overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+/* body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+} */
+
+
+.site-container {
+    width: 100%;
+    max-width: 2000px; /* 超解像モニターへの対応 */
+    margin: 0 auto;
+}
+
+
+
+
+/* =========================================
+   0. 実験
+   ========================================= */
+
+
+
+
+
+/* =========================================
+   3. ハブ・セクション (最上部) ※site-container外
+   ========================================= */
+/* -----------------------------------------
+   3-1. 動画部分
+   ----------------------------------------- */
+   
+/* --- 2. 外枠（中央寄せの要） --- */
+.hub-outer-wrapper {
+    width: 100vw;
+    height: auto;
+    background-color: #000;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* --- 3. 16:9のメインコンテナ --- */
+.hub-section {
+    position: relative;
+    width: 100%; 
+    aspect-ratio: 16 / 9;
+    
+    /* 縦長画面への対応：幅が画面を超えないように制限 */
+    max-width: calc(100vh * 16 / 9);
+
+    background: #000;
+    overflow: hidden;
+    flex-shrink: 0; /* 親要素によって潰されるのを防ぐ */
+}
+
+/* --- 4. 動画・視認性オーバーレイ --- */
+.hub-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+/* 左右・下を暗くするグラデーション */
+.hub-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 30%),
+        linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 30%),
+        linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 20%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* --- 5. UI要素 --- */
+
+/* ロゴ配置 -------------------------------------*/
+.video-title-container {
+    position: absolute;
+    z-index: 10;
+    left: 40px; 
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+#video-title-img {
+    display: block;
+    width: 20vw;
+    max-width: 600px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+}
+
+/* 右側インデックス ---------------------------*/
+/* 1. 右側のコンテナ */
+.video-side-index {
+    position: absolute;
+    z-index: 20;
+    right: 30px; 
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end; 
+}
+
+/* 2. インデックスアイテム */
+.index-item {
+    position: relative;
+    width: 4px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    
+    transition: width 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                background 0.3s ease, 
+                height 0.3s ease;
+
+    /* テキスト配置用の設定 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    padding: 0 15px 0 0;
+    
+    overflow: visible;
+    border: none;
+    margin: 0;
+}
+
+/* 当たり判定エリア（透明な広がり） */
+.index-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    right: 0;
+    width: 250px;
+    left: auto;
+    background: transparent;
+    z-index: 1;
+}
+
+/* 作品タイトルのテキストスタイル */
+.index-item-title {
+    color: #000;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px); 
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* ホバー演出 */
+
+/* 1. 棒を左に伸ばす */
+.index-item:hover {
+    width: 200px; 
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* 2. 文字を浮き上がらせる */
+.index-item:hover .index-item-title {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 4. アクティブ（現在再生中）の状態 */
+.index-item.active {
+    background: #fff;
+    width: 6px; 
+    height: 60px;
+}
+
+/* 再生中かつホバーした時 */
+.index-item.active:hover {
+    width: 200px;
+}
+
+/* 下：進捗バー ------------------------------*/
+.video-progress-bar-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.1);
+    z-index: 30;
+}
+
+.video-progress-bar-inner {
+    height: 100%;
+    background: #fff;
+    width: 0%;
+    transition: width 0.25s linear;
+}
+   
+/* -----------------------------------------
+    3-2. キャッチコピー
+    ----------------------------------------- */
+.hub-profile-banner {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+
+    display: initial;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hub-concept {
+    font-size: 2.2rem;
+    /* レスポンシブ対応：画面が小さい時は文字を小さく */
+    font-size: clamp(1.2rem, 4vw, 2.2rem); 
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    font-family: var(--font-family-code);
+    margin-bottom: 0; /* paddingで調整されているので適宜 */
+}
+
+/* フローティングノード用のレイヤー
+   後ほどIDベースでJavaScriptやCSSで配置できるように、
+   ここではIDだけ振っておく。 */
+.floating-nodes-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================
+   4. その他のセクション (プレースホルダー)
+   縦長構成を示すスタブ
+   ========================================= */
+.about-me-section, .skills-section, .portfolio-section {
+    position: relative;
+    padding: 100px 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* セクションの区切り */
+    background-color: transparent; /* bodyの全体グラデーションを活かす */
+}
+
+.about-me-section {
+    min-height: var(--about-me-min-height); /* 縦長になるように */
+}
+
+/* セクションタイトル */
+.about-me-section__title, .skills-section__title, .portfolio-section__title {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+/* セクションテキスト */
+.about-me-section__text {
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* スキル・ポートフォリオセクションの高さ */
+.skills-section, .portfolio-section {
+     min-height: 80vh;
+}

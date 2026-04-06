@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I'm Unknown</h1>
-  <p>ポートフォリオ作成中</p>
+  <div>Loading...</div>
+
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        location.href = "html/home.html";
+      }); // 1秒後に遷移
+    };
+  </script>
 </body>
 </html>
