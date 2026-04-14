@@ -28,6 +28,15 @@
     /* セクションの高さ */
     --hub-section-height: 100vh; /* 最上部は画面いっぱいに */
     --about-me-min-height: 100vh; /* About Meも十分な高さを */
+
+    --bg-color: #1e1e1e;
+    --text-default: #d4d4d4;
+    --keyword-color: #569cd6;  /* 青：型・予約語 */
+    --variable-color: #9cdcfe; /* 水色：変数 */
+    --function-color: #dcdcaa; /* 黄：関数 */
+    --string-color: #ce9178;   /* オレンジ：文字列・強調 */
+    --symbol-color: #808080;   /* グレー：記号 */
+
 }
 
 /* =========================================
@@ -273,38 +282,88 @@ body {
 /* -----------------------------------------
     3-2. キャッチコピー
     ----------------------------------------- */
-.hub-profile-banner {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
 
-    display: initial;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+.concep-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  /* background-color: var(--bg-color); */
+  margin: 0;
 }
 
-.hub-concept {
-    font-size: 2.2rem;
-    /* レスポンシブ対応：画面が小さい時は文字を小さく */
-    font-size: clamp(1.2rem, 4vw, 2.2rem); 
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    font-family: var(--font-family-code);
-    margin-bottom: 0; /* paddingで調整されているので適宜 */
+.code-editor {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-default);
 }
 
-/* フローティングノード用のレイヤー
-   後ほどIDベースでJavaScriptやCSSで配置できるように、
-   ここではIDだけ振っておく。 */
-.floating-nodes-layer {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.line {
+  display: flex;
+  align-items: baseline; /* 文字の下端を揃える */
+  gap: 0;
 }
+
+/* アニメーション用の追加スタイル-------*/
+#typing-target span {
+  opacity: 0; /* 最初は透明 */
+  transform: translateY(5px); /* 少し下から */
+  display: inline-block;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+/* JSでこのクラスが付与された瞬間に表示 */
+#typing-target span.typed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 各要素の配色（そのまま）-------------*/
+/* クラス名はJS側で自動的に付与します */
+.keyword  { color: var(--keyword-color); }
+.variable { color: var(--variable-color); }
+.function { color: var(--function-color); }
+.symbol   { color: var(--symbol-color); }
+.text     { color: var(--text-default); opacity: 0.8; }
+
+/* 「最適」の強調デザイン（そのまま） */
+.optimum {
+  color: var(--string-color);
+  font-size: 5rem; /* サイズを大きく */
+  font-weight: 800;
+  margin: 0 0.05em; /* 詰める */
+  position: relative;
+  text-shadow: 0 0 15px rgba(206, 145, 120, 0.3);
+  /* 最適だけは下揃えを微調整したほうが綺麗かも */
+  vertical-align: -0.1em;
+}
+
+/* カーソル（そのまま） */
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #aeafad;
+  margin-left: 4px;
+  /* 最初は非表示 */
+  opacity: 0; 
+  vertical-align: middle;
+}
+
+/* タイピング完了後にこのクラスをJSで付与 */
+.cursor.active {
+  animation: blink 1s step-end infinite;
+  opacity: 1;
+}
+
+@keyframes blink {
+  from, to { background-color: transparent; }
+  50% { background-color: #aeafad; }
+}
+
 
 
 /* =========================================

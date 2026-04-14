@@ -199,3 +199,98 @@
 
 
 
+
+
+/* キーフレーズ実験 ----------------------------------------*/
+
+/* :root {
+  --bg-color: #1e1e1e;
+  --text-default: #d4d4d4;
+  --keyword-color: #569cd6;  
+  --variable-color: #9cdcfe; 
+  --function-color: #dcdcaa; 
+  --string-color: #ce9178;   
+  --symbol-color: #808080;   
+}
+
+.concep-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  background-color: var(--bg-color);
+  margin: 0;
+}
+
+.code-editor {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-default);
+}
+
+.line {
+  display: flex;
+  align-items: baseline; 
+  gap: 0;
+} */
+
+/* ----------------------------------
+   アニメーション用の追加スタイル
+----------------------------------- */
+/* #typing-target span {
+  opacity: 0; 
+  transform: translateY(5px); 
+  display: inline-block;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+} */
+
+/* JSでこのクラスが付与された瞬間に表示 */
+/* #typing-target span.typed {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+/* ----------------------------------
+   各要素の配色（そのまま）
+----------------------------------- */
+/* クラス名はJS側で自動的に付与します */
+/* .keyword  { color: var(--keyword-color); }
+.variable { color: var(--variable-color); }
+.function { color: var(--function-color); }
+.symbol   { color: var(--symbol-color); }
+.text     { color: var(--text-default); opacity: 0.8; } */
+
+/* 「最適」の強調デザイン（そのまま） */
+/* .optimum {
+  color: var(--string-color);
+  font-size: 5rem; 
+  font-weight: 800;
+  margin: 0 0.05em; 
+  position: relative;
+  text-shadow: 0 0 15px rgba(206, 145, 120, 0.3);
+  vertical-align: -0.1em;
+} */
+
+/* カーソル（そのまま） */
+
+/* .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #aeafad;
+  margin-left: 4px;
+  opacity: 0; 
+  vertical-align: middle;
+} */
+
+/* タイピング完了後にこのクラスをJSで付与 */
+/* .cursor.active {
+  animation: blink 1s step-end infinite;
+  opacity: 1;
+}
+
+@keyframes blink {
+  from, to { background-color: transparent; }
+  50% { background-color: #aeafad; }
+} */
