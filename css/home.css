@@ -7,7 +7,7 @@
     --site-bg-bottom: #868686; */
 
     /* 背景全体単色 */
-    --hub-bg: #030020;
+    --hub-bg: #0b0033;
     --site-bg: #000;
     
     /* ハブ・セクションの「ゲーム画像」背景のプレースホルダー。*/
@@ -76,7 +76,10 @@ body {
     margin: 0 auto;
 }
 
-
+.hub-site-gradient {
+    background: linear-gradient(180deg, var(--hub-bg) 0%, var(--site-bg) 100%);
+    height: 3vw;
+}
 
 
 /* =========================================
@@ -475,7 +478,7 @@ body {
     object-position: center;
 }
 
-/* レスポンシブ対応（スマホ表示時に縦に並べる） */
+/* レスポンシブ対応（スマホ表示時に縦に並べる）*反応してないかも */
 @media (max-width: 768px) {
     .container {
         flex-direction: column-reverse;

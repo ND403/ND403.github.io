@@ -96,13 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const allSpans = target.querySelectorAll('span');
-  const typingSpeed = 10; 
+  const typingSpeed = 10;
+  let timer = null; // タイマー管理用
 
   // 2. タイピング実行関数
   function startTyping(index) {
     if (index < allSpans.length) {
       allSpans[index].classList.add('typed');
-      setTimeout(() => {
+      timer = setTimeout(() => {
         startTyping(index + 1);
       }, typingSpeed);
     } else {
@@ -110,27 +111,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 3. 画面内に入ったかを監視する設定
+  // 3. リセット関数（画面外に出たときに文字を消す）
+  function resetTyping() {
+    clearTimeout(timer); // 動作中のタイマーを止める
+    allSpans.forEach(span => span.classList.remove('typed'));
+    cursor.classList.remove('active');
+  }
+
+  // 4. 画面内に入ったかを監視（映るたびに実行）
   const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 1 // 要素が50%見えたら実行
+    threshold: 0.6 // 60%見えたら開始
   };
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // 画面内に入ったらタイピング開始
+        // 画面に入ったらリセットしてから開始
+        resetTyping();
         startTyping(0);
-        // 一度実行したら監視を解除（リピートさせない場合）
-        observer.unobserve(entry.target);
+      } else {
+        // 画面から完全に消えたらリセットしておく
+        resetTyping();
       }
     });
   }, observerOptions);
 
-  // 監視開始
   observer.observe(target);
 });
-
 
 init();
