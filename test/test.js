@@ -132,3 +132,70 @@
 // });
 
 
+
+/* 名前部分 ----------------------------------------------*/
+/**
+ * 高速解析・データ展開アニメーション (Parallel Decrypt)
+ */
+
+const decryptConfig = {
+    noiseUpdateFps: 12, // ★ノイズの更新頻度を落とす（残像を防ぎ、記号を視認させる）
+    totalDuration: 450, // ユーザー設定値: 0.45秒
+    minNoiseLength: 2,
+    maxNoiseLength: 3,
+    characters: '01<>-_\\/[]{}—=+*^?#&$'
+};
+
+function getNoise(len) {
+    let res = '';
+    for (let i = 0; i < len; i++) {
+        res += decryptConfig.characters[Math.floor(Math.random() * decryptConfig.characters.length)];
+    }
+    return res;
+}
+
+function startDecrypt(id, finalText) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.textContent = '';
+    el.classList.add('is-visible', 'typing-cursor');
+
+    const startTime = performance.now();
+    const len = finalText.length;
+    
+    // ノイズを保持するための変数
+    let lastNoiseTime = 0;
+    let currentNoise = getNoise(decryptConfig.maxNoiseLength);
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / decryptConfig.totalDuration, 1);
+        const confirmedIndex = Math.floor(len * progress);
+
+        if (progress < 1) {
+            // ★一定時間（Fps）経つまでノイズを更新しないロジック
+            if (currentTime - lastNoiseTime > (1000 / decryptConfig.noiseUpdateFps)) {
+                currentNoise = getNoise(decryptConfig.maxNoiseLength);
+                lastNoiseTime = currentTime;
+            }
+
+            const confirmedPart = finalText.substring(0, confirmedIndex);
+            el.textContent = confirmedPart + currentNoise;
+            
+            requestAnimationFrame(update);
+        } else {
+            el.textContent = finalText;
+            el.classList.remove('typing-cursor');
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+window.addEventListener('load', () => {
+    // 全行並列実行
+    startDecrypt('type-en', 'Namae Tarou');
+    startDecrypt('type-jp', '名前 太郎');
+    startDecrypt('type-hn', 'UnS404');
+});

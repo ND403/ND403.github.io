@@ -293,13 +293,16 @@ body {
   align-items: center;
   height: 30vh;
   margin: 0;
+  overflow: hidden;
+  padding: 0 5vw;
 }
 
 .code-editor {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 3rem;
-  line-height: 1;
+  font-size: clamp(0.8rem, 3.5vw, 4rem);
+  line-height: 1.2;
   color: var(--text-default);
+  white-space: nowrap;
 }
 
 .line {
@@ -333,7 +336,7 @@ body {
 /* 「最適」の強調デザイン */
 .optimum {
   color: var(--string-color);
-  font-size: 5rem; /* サイズを大きく */
+  font-size: clamp(1.2rem, 5.5vw, 6rem);
   font-weight: 800;
   margin: 0 0.05em; /* 詰める */
   position: relative;
@@ -385,7 +388,8 @@ body {
 .intro-name-container {
     display: flex;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1300px;
+    padding: 0 5%;
     align-items: center;
     justify-content: space-between;
 }
@@ -400,7 +404,7 @@ body {
 }
 
 .job-title {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: normal;
     display: inline-block;
     color: var(--keyword-color);
@@ -413,24 +417,24 @@ body {
 }
 
 .name-en {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     margin-bottom: -10px;
-    margin-left: 80px; /* 画像の配置に合わせ少し右へ */
+    margin-left: 110px; /* 画像の配置に合わせ少し右へ */
     color: var(--string-color);
 }
 
 .name-jp {
-    font-size: 4.5rem;
+    font-size: 6.2rem;
     letter-spacing: 0.1em;
     color: var(--string-color);
 }
 
 .handle-name-area {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
 }
 
 .handle-name .label-HN {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin-right: 15px;
 }
 
@@ -458,9 +462,9 @@ body {
 }
 
 .icon-circle {
-    width: 300px;
-    height: 300px;
-    border: 2px solid #0a0066;
+    width: 440px;
+    height: 440px;
+    border: 3px solid #0a0066;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -480,7 +484,7 @@ body {
 
 /* レスポンシブ対応（スマホ表示時に縦に並べる）*反応してないかも */
 @media (max-width: 768px) {
-    .container {
+    .intro-name-container {
         flex-direction: column-reverse;
         text-align: center;
     }
@@ -495,6 +499,23 @@ body {
         height: 200px;
     }
 }
+
+/* アニメーション前（リセット状態） */
+.js-decrypt {
+    visibility: hidden;
+}
+
+/* 動作中・完了後 */
+.js-decrypt.is-visible {
+    visibility: visible !important;
+}
+
+/* カーソル演出（必要な場合） */
+.js-decrypt.typing-cursor::after {
+    content: '|';
+    animation: blink 0.5s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
 
 
 /* =========================================

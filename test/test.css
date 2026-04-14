@@ -311,11 +311,6 @@
 
 /* 名前部分------------------------------*/
 /* 全体設定 */
-/* body {
-    background-color: #000000;
-    color: #ffffff;
-}
-
 .intro-name-section {
     font-family: Consolas, "Courier New", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier, monospace;
     line-height: 1.4;
@@ -326,6 +321,27 @@
     padding: 0 10%;
 }
 
+/* --- ここからアニメーション用設定 --- */
+/* JS実行前は非表示にする */
+#type-en, #type-jp, #type-hn {
+    visibility: hidden;
+}
+
+/* アニメーション開始時にJSから付与されるクラス */
+.is-visible {
+    visibility: visible !important;
+}
+
+/* タイピングカーソルの演出 */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 0.5s step-end infinite;
+    margin-left: 2px;
+    color: #ffffff;
+}
+@keyframes blink { 50% { opacity: 0; } }
+/* --- ここまで --- */
+
 .intro-name-container {
     display: flex;
     width: 100%;
@@ -334,14 +350,8 @@
     justify-content: space-between;
 }
 
-/* 左側コンテンツ */
-/* .intro-text {
-    flex: 1;
-}
-
-.job-title-wrapper {
-    margin-bottom: 40px;
-}
+.intro-text { flex: 1; }
+.job-title-wrapper { margin-bottom: 40px; }
 
 .job-title {
     font-size: 1.8rem;
@@ -350,56 +360,34 @@
     color: #1b84c0;
     border-bottom: 2px solid #1b84c0;
     padding-bottom: 5px;
+    /* VSCode風の色収差 */
+    text-shadow: 1px 0 rgba(255,0,0,0.2), -1px 0 rgba(0,255,255,0.2);
 }
 
-.name-area {
-    margin-bottom: 30px;
-} */
+.name-area { margin-bottom: 30px; }
 
-/* .name-en {
+.name-en {
     font-size: 1.5rem;
     margin-bottom: -10px;
-    margin-left: 80px; /* 画像の配置に合わせ少し右へ */
-    /* color: #db9d16;
+    margin-left: 80px;
+    color: #db9d16;
 }
 
 .name-jp {
     font-size: 4.5rem;
     letter-spacing: 0.1em;
     color: #db9d16;
+    text-shadow: 1px 0 rgba(255,0,0,0.2), -1px 0 rgba(0,255,255,0.2);
 }
 
-.handle-name-area {
-    font-size: 1.8rem;
-}
+.handle-name-area { font-size: 1.8rem; }
+.handle-name .label-HN { font-size: 1.2rem; margin-right: 15px; }
+.label-HN { color: #1b84c0; }
+.handle-name-main { color: #8ed5ff; }
+.handle-name .ruby { font-size: 1.2rem; }
+.ruby { color: #8ed5ff; }
 
-.handle-name .label-HN {
-    font-size: 1.2rem;
-    margin-right: 15px;
-}
-
-.label-HN {
-    color: #1b84c0;
-}
-
-.handle-name-main {
-    color: #8ed5ff;
-}
-
-.handle-name .ruby {
-    font-size: 1.2rem;
-}
-
-.ruby {
-    color: #8ed5ff;
-}
- */
-/* 右側アイコン（丸枠でマスク） */
-/* .intro-icon {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
+.intro-icon { flex: 1; display: flex; justify-content: center; }
 
 .icon-circle {
     width: 300px;
@@ -411,35 +399,21 @@
     justify-content: center;
     position: relative;
     overflow: hidden; 
-} */
+}
 
-/* 画像そのもののスタイル */
-/* .icon-image {
+.icon-image {
     width: 100%;
-    height: 100%; */
-    /* トリミング */
-/*    object-fit: cover; 
+    height: 100%;
+    object-fit: cover; 
     object-position: center;
-} */
+}
 
-/* レスポンシブ対応（スマホ表示時に縦に並べる） */
-/* @media (max-width: 768px) {
-    .container {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-    .name-en {
-        margin-left: 0;
-    }
-    .intro-icon {
-        margin-bottom: 40px;
-    }
-    .icon-circle {
-        width: 200px;
-        height: 200px;
-    }
-} */
-
+@media (max-width: 768px) {
+    .intro-name-container { flex-direction: column-reverse; text-align: center; }
+    .name-en { margin-left: 0; }
+    .intro-icon { margin-bottom: 40px; }
+    .icon-circle { width: 200px; height: 200px; }
+}
 
 
 
