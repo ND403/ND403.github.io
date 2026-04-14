@@ -294,3 +294,140 @@
   from, to { background-color: transparent; }
   50% { background-color: #aeafad; }
 } */
+
+
+/* 全体設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Consolas, "Courier New", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier, monospace;
+    line-height: 1.4;
+}
+
+.intro-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 左側コンテンツ */
+.intro-text {
+    flex: 1;
+}
+
+.job-title-wrapper {
+    margin-bottom: 40px;
+}
+
+.job-title {
+    font-size: 1.8rem;
+    font-weight: normal;
+    display: inline-block;
+    color: #1b84c0;
+    border-bottom: 2px solid #1b84c0;
+    padding-bottom: 5px;
+}
+
+.name-area {
+    margin-bottom: 30px;
+}
+
+.name-en {
+    font-size: 1.5rem;
+    margin-bottom: -10px;
+    margin-left: 80px; /* 画像の配置に合わせ少し右へ */
+    color: #db9d16;
+}
+
+.name-jp {
+    font-size: 4.5rem;
+    letter-spacing: 0.1em;
+    color: #db9d16;
+}
+
+.handle-name-area {
+    font-size: 1.8rem;
+}
+
+.handle-name .label-HN {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.label-HN {
+    color: #1b84c0;
+}
+
+.handle-name-main {
+    color: #8ed5ff;
+}
+
+.handle-name .ruby {
+    font-size: 1.2rem;
+}
+
+.ruby {
+    color: #8ed5ff;
+}
+
+/* 右側アイコン（丸枠でマスク） */
+.intro-icon {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-circle {
+    width: 300px;
+    height: 300px;
+    border: 2px solid #0a0066;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* 画像そのもののスタイル */
+.icon-image {
+    width: 100%;
+    height: 100%;
+    /* トリミング */
+    object-fit: cover; 
+    object-position: center;
+}
+
+/* レスポンシブ対応（スマホ表示時に縦に並べる） */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .name-en {
+        margin-left: 0;
+    }
+    .intro-icon {
+        margin-bottom: 40px;
+    }
+    .icon-circle {
+        width: 200px;
+        height: 200px;
+    }
+}

@@ -29,7 +29,6 @@
     --hub-section-height: 100vh; /* 最上部は画面いっぱいに */
     --about-me-min-height: 100vh; /* About Meも十分な高さを */
 
-    --bg-color: #1e1e1e;
     --text-default: #d4d4d4;
     --keyword-color: #569cd6;  /* 青：型・予約語 */
     --variable-color: #9cdcfe; /* 水色：変数 */
@@ -289,7 +288,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 30vh;
-  /* background-color: var(--bg-color); */
   margin: 0;
 }
 
@@ -306,7 +304,7 @@ body {
   gap: 0;
 }
 
-/* アニメーション用の追加スタイル-------*/
+/* アニメーション用のスタイル-------*/
 #typing-target span {
   opacity: 0; /* 最初は透明 */
   transform: translateY(5px); /* 少し下から */
@@ -320,7 +318,7 @@ body {
   transform: translateY(0);
 }
 
-/* 各要素の配色（そのまま）-------------*/
+/* 各要素の配色-------------*/
 /* クラス名はJS側で自動的に付与します */
 .keyword  { color: var(--keyword-color); }
 .variable { color: var(--variable-color); }
@@ -328,7 +326,7 @@ body {
 .symbol   { color: var(--symbol-color); }
 .text     { color: var(--text-default); opacity: 0.8; }
 
-/* 「最適」の強調デザイン（そのまま） */
+/* 「最適」の強調デザイン */
 .optimum {
   color: var(--string-color);
   font-size: 5rem; /* サイズを大きく */
@@ -340,7 +338,7 @@ body {
   vertical-align: -0.1em;
 }
 
-/* カーソル（そのまま） */
+/* カーソル */
 
 .cursor {
   display: inline-block;
