@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.5 // 要素が50%見えたら実行
+    threshold: 1 // 要素が50%見えたら実行
   };
 
   const observer = new IntersectionObserver((entries, observer) => {

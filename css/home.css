@@ -7,7 +7,8 @@
     --site-bg-bottom: #868686; */
 
     /* 背景全体単色 */
-    --site-bg: #191822;
+    --hub-bg: #030020;
+    --site-bg: #000;
     
     /* ハブ・セクションの「ゲーム画像」背景のプレースホルダー。*/
     /* --game-image-bg: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/temp.png'); */
@@ -30,10 +31,10 @@
     --about-me-min-height: 100vh; /* About Meも十分な高さを */
 
     --text-default: #d4d4d4;
-    --keyword-color: #569cd6;  /* 青：型・予約語 */
-    --variable-color: #9cdcfe; /* 水色：変数 */
+    --keyword-color: #1b84c0;  /* 青：型・予約語 */
+    --variable-color: #8ed5ff; /* 水色：変数 */
     --function-color: #dcdcaa; /* 黄：関数 */
-    --string-color: #ce9178;   /* オレンジ：文字列・強調 */
+    --string-color: #db9d16;   /* オレンジ：文字列・強調 */
     --symbol-color: #808080;   /* グレー：記号 */
 
 }
@@ -97,7 +98,7 @@ body {
 .hub-outer-wrapper {
     width: 100vw;
     height: auto;
-    background-color: #000;
+    background-color: var(--hub-bg);
     
     display: flex;
     flex-direction: column;
@@ -114,7 +115,7 @@ body {
     /* 縦長画面への対応：幅が画面を超えないように制限 */
     max-width: calc(100vh * 16 / 9);
 
-    background: #000;
+    background: var(--hub-bg);
     overflow: hidden;
     flex-shrink: 0; /* 親要素によって潰されるのを防ぐ */
 }
@@ -365,37 +366,134 @@ body {
 
 
 /* =========================================
-   4. その他のセクション (プレースホルダー)
-   縦長構成を示すスタブ
+   4-1. 自己紹介(名前)
    ========================================= */
-.about-me-section, .skills-section, .portfolio-section {
-    position: relative;
-    padding: 100px 50px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* セクションの区切り */
-    background-color: transparent; /* bodyの全体グラデーションを活かす */
+
+.intro-name-section {
+    font-family: Consolas, "Courier New", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier, monospace;
+    line-height: 1.4;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
 }
 
-.about-me-section {
-    min-height: var(--about-me-min-height); /* 縦長になるように */
+.intro-name-container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* セクションタイトル */
-.about-me-section__title, .skills-section__title, .portfolio-section__title {
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
+/* 左側コンテンツ */
+.intro-text {
+    flex: 1;
+}
+
+.job-title-wrapper {
+    margin-bottom: 40px;
+}
+
+.job-title {
+    font-size: 1.8rem;
+    font-weight: normal;
+    display: inline-block;
+    color: var(--keyword-color);
+    border-bottom: 2px solid var(--keyword-color);
+    padding-bottom: 5px;
+}
+
+.name-area {
     margin-bottom: 30px;
-    color: var(--text-color);
 }
 
-/* セクションテキスト */
-.about-me-section__text {
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 800px;
-    margin: 0 auto;
+.name-en {
+    font-size: 1.5rem;
+    margin-bottom: -10px;
+    margin-left: 80px; /* 画像の配置に合わせ少し右へ */
+    color: var(--string-color);
 }
 
-/* スキル・ポートフォリオセクションの高さ */
-.skills-section, .portfolio-section {
-     min-height: 80vh;
+.name-jp {
+    font-size: 4.5rem;
+    letter-spacing: 0.1em;
+    color: var(--string-color);
 }
+
+.handle-name-area {
+    font-size: 1.8rem;
+}
+
+.handle-name .label-HN {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.label-HN {
+    color: var(--keyword-color);
+}
+
+.handle-name-main {
+    color: var(--variable-color);
+}
+
+.handle-name .ruby {
+    font-size: 1.2rem;
+}
+
+.ruby {
+    color: var(--variable-color);
+}
+
+/* 右側アイコン（丸枠でマスク） */
+.intro-icon {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-circle {
+    width: 300px;
+    height: 300px;
+    border: 2px solid #0a0066;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* 画像そのもののスタイル */
+.icon-image {
+    width: 100%;
+    height: 100%;
+    /* トリミング */
+    object-fit: cover; 
+    object-position: center;
+}
+
+/* レスポンシブ対応（スマホ表示時に縦に並べる） */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .name-en {
+        margin-left: 0;
+    }
+    .intro-icon {
+        margin-bottom: 40px;
+    }
+    .icon-circle {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+
+/* =========================================
+   4-2. 自己紹介(名前)
+   ========================================= */
