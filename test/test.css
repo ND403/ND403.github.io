@@ -311,7 +311,7 @@
 
 /* 名前部分------------------------------*/
 /* 全体設定 */
-.intro-name-section {
+/* .intro-name-section {
     font-family: Consolas, "Courier New", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier, monospace;
     line-height: 1.4;
     height: 50vh;
@@ -319,30 +319,30 @@
     align-items: center;
     justify-content: center;
     padding: 0 10%;
-}
+} */
 
 /* --- ここからアニメーション用設定 --- */
 /* JS実行前は非表示にする */
-#type-en, #type-jp, #type-hn {
+/* #type-en, #type-jp, #type-hn {
     visibility: hidden;
-}
+} */
 
 /* アニメーション開始時にJSから付与されるクラス */
-.is-visible {
+/* .is-visible {
     visibility: visible !important;
-}
+} */
 
 /* タイピングカーソルの演出 */
-.typing-cursor::after {
+/* .typing-cursor::after {
     content: '|';
     animation: blink 0.5s step-end infinite;
     margin-left: 2px;
     color: #ffffff;
 }
-@keyframes blink { 50% { opacity: 0; } }
-/* --- ここまで --- */
+@keyframes blink { 50% { opacity: 0; } } */
+/* --- ここまでアニメーション用設定 --- */
 
-.intro-name-container {
+/* .intro-name-container {
     display: flex;
     width: 100%;
     max-width: 1000px;
@@ -360,7 +360,6 @@
     color: #1b84c0;
     border-bottom: 2px solid #1b84c0;
     padding-bottom: 5px;
-    /* VSCode風の色収差 */
     text-shadow: 1px 0 rgba(255,0,0,0.2), -1px 0 rgba(0,255,255,0.2);
 }
 
@@ -413,13 +412,180 @@
     .name-en { margin-left: 0; }
     .intro-icon { margin-bottom: 40px; }
     .icon-circle { width: 200px; height: 200px; }
+}*/
+
+
+
+
+
+
+/* 活動実績・スキル部分------------------------------*/
+
+/* --- 基本設定 --- */
+body {
+    background-color: #1a1a1a; /* 手書きメモに合わせて、少し明るい黒 */
+    color: #ffffff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 60px; /* 余白を多めに */
+}
+
+h2.section-title {
+    font-size: 2.2rem; /* タイトルを大きく */
+    font-weight: normal;
+    margin-bottom: 60px;
+}
+
+/* --- 活動実績レイアウト --- */
+.achievement-container {
+    display: flex;
+    max-width: 1200px; /* 全体の幅を広げる */
+    margin-bottom: 100px;
+    gap: 60px; /* カラム間の余白 */
+}
+
+.main-column {
+    width: 65%; /* 左側を広く */
+    padding-right: 20px;
+}
+
+.sub-column {
+    width: 35%; /* 右側 */
+    position: relative;
+    padding-left: 0; /* paddingをリセット */
+}
+
+/* --- 左側：メイン実績の新しいスタイル --- */
+.achievement-item-main {
+    margin-bottom: 50px; /* 項目間の余白 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 項目全体の左側に太い白線 */
+.achievement-item-header {
+    border-left: 5px solid #ffffff; /* 手書きの太線を再現 */
+    padding-left: 20px;
+    margin-bottom: 15px;
+    text-align: left; /* 実績名は左寄せ */
+}
+
+.achievement-item-header h3 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* コメントボックスのコンテナ（右寄せ用） */
+.comment-box-container {
+    text-align: right; /* これでコメントが右に寄る */
+    padding-right: 20px;
+}
+
+/* 吹き出し風コメントボックス */
+.comment-box {
+    display: inline-block;
+    background-color: #cccccc; /* 手書きメモに合わせたグレー背景 */
+    color: #1a1a1a; /* 文字は暗く */
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: monospace; /* エンジニアらしいフォント */
+    position: relative;
+}
+
+/* ハイライト表示（企業票2位など） */
+.comment-box.highlights {
+    background-color: #ffffff; /* ここだけ白背景 */
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+/* 手書きメモにある、青い枠線をTGSのコメントに追加するためのクラス（任意） */
+/* HTMLで「comment-box」に「blue-border」クラスを追加すれば適用されます */
+.comment-box.blue-border {
+    border: 2px solid #007bff;
+}
+
+/* --- 右側：サブ実績の新しいスタイル --- */
+.sub-list-container {
+    border-left: 2px solid #ffffff; /* 右側全体の左側に縦線 */
+    padding-left: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center; /* 箇条書きを中央寄せ */
+}
+
+.sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sub-list li {
+    color: #ffffff;
+    margin-bottom: 25px; /* 項目間の余白 */
+    font-size: 1rem;
+    position: relative;
+}
+
+/* スキルスタックセクション（変更なし、調整のみ） */
+.skills {
+    margin-top: 60px;
+}
+
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.skill-item {
+    background-color: #222;
+    border: 1px solid #333;
+    padding: 20px;
+    width: 140px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.skill-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.skill-duration {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.skill-extra {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.skill-extra.atcoder {
+    color: #d97706;
+}
+
+.skill-item.learning {
+    opacity: 0.6;
+    border-style: dashed;
 }
 
 
 
 
 
-/* 部分------------------------------*/
 
+
+
+
+/* 活動実績・スキル部分------------------------------*/
 
 
