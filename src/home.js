@@ -217,8 +217,8 @@ const scrollManager = {
 
     checkScroll() {
         const vh = window.innerHeight;
-        const playBoundaryTop = vh * (0.2); // 画面上から35%の位置
-        const playBoundaryBottom = vh * (0.8); // 画面上から65%の位置
+        const playBoundaryTop = vh * (0.15); // 画面上から35%の位置
+        const playBoundaryBottom = vh * (0.85); // 画面上から65%の位置
         
         // 完全に消去する余裕（オフセット: 100px分画面外に出たらリセット）
         const resetOffset = 100;
