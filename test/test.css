@@ -422,138 +422,130 @@
 /* 活動実績・スキル部分------------------------------*/
 
 /* --- 基本設定 --- */
-body {
-    background-color: #1a1a1a; /* 手書きメモに合わせて、少し明るい黒 */
+/* body {
+    background-color: #1a1a1a;
     color: #ffffff;
     font-family: "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
-    padding: 60px; /* 余白を多めに */
+    padding: 60px;
 }
 
 h2.section-title {
-    font-size: 2.2rem; /* タイトルを大きく */
+    font-size: 2.2rem; 
     font-weight: normal;
     margin-bottom: 60px;
-}
+} */
 
-/* --- 活動実績レイアウト --- */
-.achievement-container {
+/* --- 横並び（Flexbox）レイアウト --- */
+/* .achieve-skill-flex-wrapper {
     display: flex;
-    max-width: 1200px; /* 全体の幅を広げる */
-    margin-bottom: 100px;
-    gap: 60px; /* カラム間の余白 */
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0px; 
+} */
+
+/* 各セクションの横幅 */
+/* .achievements-section {
+    flex: 1;
+    width: 50%;
+    padding-left: 30px;  
+    padding-right: 50px; 
+    box-sizing: border-box;
 }
 
-.main-column {
-    width: 65%; /* 左側を広く */
-    padding-right: 20px;
+.skills-section {
+    flex: 1;
+    width: 50%;
+    border-left: 2px solid #ffffff;
+    padding-left: 50px;
+    box-sizing: border-box;
+} */
+
+/* --- 活動実績のスタイル --- */
+/* .achievement-list {
+    width: 100%;
 }
 
-.sub-column {
-    width: 35%; /* 右側 */
-    position: relative;
-    padding-left: 0; /* paddingをリセット */
-}
+.achievement-item {
+    margin-bottom: 35px;
+    display: flex;
+} */
 
-/* --- 左側：メイン実績の新しいスタイル --- */
-.achievement-item-main {
-    margin-bottom: 50px; /* 項目間の余白 */
+/* 左側の白い太線 */
+/* .achievement-content {
+    border-left: 5px solid #ffffff; 
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
-/* 項目全体の左側に太い白線 */
-.achievement-item-header {
-    border-left: 5px solid #ffffff; /* 手書きの太線を再現 */
-    padding-left: 20px;
-    margin-bottom: 15px;
-    text-align: left; /* 実績名は左寄せ */
-}
-
-.achievement-item-header h3 {
-    font-size: 1.4rem;
+.achievement-name {
+    font-size: 1.6rem;
     font-weight: normal;
-    margin: 0;
+    margin: 0 0 12px 0;
     color: #ffffff;
-}
+} */
 
-/* コメントボックスのコンテナ（右寄せ用） */
-.comment-box-container {
-    text-align: right; /* これでコメントが右に寄る */
-    padding-right: 20px;
-}
-
-/* 吹き出し風コメントボックス */
-.comment-box {
+/* 青いボタン */
+/* .btn-intro {
     display: inline-block;
-    background-color: #cccccc; /* 手書きメモに合わせたグレー背景 */
-    color: #1a1a1a; /* 文字は暗く */
-    padding: 12px 25px;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    font-family: monospace; /* エンジニアらしいフォント */
-    position: relative;
-}
-
-/* ハイライト表示（企業票2位など） */
-.comment-box.highlights {
-    background-color: #ffffff; /* ここだけ白背景 */
-    color: #1a1a1a;
-    font-weight: bold;
-}
-
-/* 手書きメモにある、青い枠線をTGSのコメントに追加するためのクラス（任意） */
-/* HTMLで「comment-box」に「blue-border」クラスを追加すれば適用されます */
-.comment-box.blue-border {
-    border: 2px solid #007bff;
-}
-
-/* --- 右側：サブ実績の新しいスタイル --- */
-.sub-list-container {
-    border-left: 2px solid #ffffff; /* 右側全体の左側に縦線 */
-    padding-left: 30px;
-    height: 100%;
-    display: flex;
-    align-items: center; /* 箇条書きを中央寄せ */
-}
-
-.sub-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sub-list li {
+    background-color: #007bff; 
     color: #ffffff;
-    margin-bottom: 25px; /* 項目間の余白 */
-    font-size: 1rem;
-    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 10px 24px;
+    border-radius: 0px; 
 }
 
-/* スキルスタックセクション（変更なし、調整のみ） */
-.skills {
-    margin-top: 60px;
+.btn-intro:hover {
+    background-color: #0069d9;
+} */
+
+/* さらに表示ボタン */
+/* .more-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: block;
+    text-align: left;
 }
 
-.skill-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
+.hidden-elements {
+    display: none;
+} */
 
-.skill-item {
-    background-color: #222;
-    border: 1px solid #333;
-    padding: 20px;
-    width: 140px;
+/* --- スキルスタックのスタイル（真ん中の線に引っ付く左寄せ） --- */
+/* .skill-grid {
+    display: flex; */
+    /* flex-wrap: wrap; 横並びにして、溢れたら下へ */
+    /* justify-content: flex-start; 線に引っ付くように左寄せ */
+    /* gap: 20px;
+    width: 100%;
+} */
+
+/* .skill-item {
+    background-color: #2a2a2a; 
+    border: 1px solid #444;
+    padding: 20px 15px;
+    width: 130px;
     text-align: center;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .skill-icon {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     object-fit: contain;
     margin-bottom: 12px;
 }
@@ -566,26 +558,37 @@ h2.section-title {
 
 .skill-extra {
     font-size: 0.8rem;
-    color: #888;
+    color: #aaaaaa;
 }
 
 .skill-extra.atcoder {
-    color: #d97706;
+    color: #d97706; 
 }
 
 .skill-item.learning {
     opacity: 0.6;
     border-style: dashed;
-}
+} */
+
+/* --- レスンポンシブ対応（スマホなど） --- */
+/* @media (max-width: 900px) {
+    .achieve-skill-flex-wrapper {
+        flex-direction: column; 
+    }
+    .achievements-section {
+        padding-right: 0;
+    }
+    .skills-section {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 40px;
+    }
+} */
 
 
 
 
 
-
-
-
-
-/* 活動実績・スキル部分------------------------------*/
+/* 部分------------------------------*/
 
 

@@ -204,4 +204,33 @@
 
 
 
+/* 活動実績部分 ----------------------------------------------*/
+
+// DOM要素の取得
+// const toggleBtn = document.getElementById('toggle-btn');
+// const moreAchievements = document.getElementById('more-achievements');
+
+// // 「さらに表示」ボタンのクリックイベント
+// toggleBtn.addEventListener('click', () => {
+//     // hidden-elements クラスを付け外しして表示/非表示をパッと切り替え
+//     moreAchievements.classList.toggle('hidden-elements');
+    
+//     // 状態に合わせてボタンのテキストを変更
+//     if (moreAchievements.classList.contains('hidden-elements')) {
+//         toggleBtn.textContent = '▼ さらに表示';
+//     } else {
+//         toggleBtn.textContent = '▲ 閉じる';
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
 /* 部分 ----------------------------------------------*/

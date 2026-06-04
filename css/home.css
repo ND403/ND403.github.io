@@ -30,9 +30,9 @@
     --hub-section-height: 100vh; /* 最上部は画面いっぱいに */
     --about-me-min-height: 100vh; /* About Meも十分な高さを */
 
-    --text-default: #d4d4d4;
+    --text-default: #a3a3a3;
     --object-color: #009255;   /* 緑：オブジェクト・クラス名 */
-    --keyword-color: #1b84c0;  /* 青：型・予約語 */
+    --keyword-color: #25a0e7;  /* 青：型・予約語 */
     --variable-color: #8ed5ff; /* 水色：変数 */
     --function-color: #dcdcaa; /* 黄：関数 */
     --string-color: #db9d16;   /* オレンジ：文字列・強調 */
@@ -300,7 +300,8 @@ body {
 
 .code-editor {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: clamp(0.8rem, 3.5vw, 4rem);
+  /* 基準となるサイズを 4vw など画面連動に調整（最大サイズも4remなどに制限） */
+  font-size: clamp(0.7rem, 4vw, 4rem);
   line-height: 1.2;
   color: var(--text-default);
   white-space: nowrap;
@@ -308,58 +309,55 @@ body {
 
 .line {
   display: flex;
-  align-items: baseline; /* 文字の下端を揃える */
+  align-items: baseline; 
   gap: 0;
 }
 
 /* アニメーション用のスタイル-------*/
 #typing-target span {
-  opacity: 0; /* 最初は透明 */
-  transform: translateY(5px); /* 少し下から */
+  opacity: 0; 
+  transform: translateY(5px); 
   display: inline-block;
   transition: opacity 0.1s ease, transform 0.1s ease;
 }
 
-/* JSでこのクラスが付与された瞬間に表示 */
 #typing-target span.typed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* 各要素の配色-------------*/
-/* クラス名はJS側で自動的に付与します */
-.keyword  { color: var(--keyword-color); }
-.variable { color: var(--variable-color); }
+/* 各要素の配色とサイズ調整-------------*/
+/* font-size を rem ではなく、親からの倍率（em）にすることで、画面幅に合わせて連動して縮むようになります */
+.keyword  { color: var(--keyword-color); font-size: 1.1em; } /* 例：基準より少し大きく */
+.variable { color: var(--variable-color); font-size: 1.0em; }
 .function { color: var(--function-color); }
 .symbol   { color: var(--symbol-color); }
 .text     { color: var(--text-default); opacity: 0.8; }
+.empty    { color: var(--text-default); opacity: 0.8; font-size: 0.3em; }
 
 /* 「最適」の強調デザイン */
 .optimum {
   color: var(--string-color);
-  font-size: clamp(1.2rem, 5.5vw, 6rem);
+  /* 画面幅連動（vw）にしつつ、通常の文字より大きくなるようにバランスを調整 */
+  font-size: clamp(1.1rem, 5.5vw, 5.5rem);
   font-weight: 800;
-  margin: 0 0.05em; /* 詰める */
+  margin: 0 0.05em; 
   position: relative;
   text-shadow: 0 0 15px rgba(206, 145, 120, 0.3);
-  /* 最適だけは下揃えを微調整したほうが綺麗かも */
-  vertical-align: -0.1em;
+  vertical-align: -0.05em;
 }
 
 /* カーソル */
-
 .cursor {
   display: inline-block;
   width: 2px;
-  height: 1.2em;
+  height: 1.2em; /* em なので文字サイズに自動連動します */
   background-color: #aeafad;
   margin-left: 4px;
-  /* 最初は非表示 */
   opacity: 0; 
   vertical-align: middle;
 }
 
-/* タイピング完了後にこのクラスをJSで付与 */
 .cursor.active {
   animation: blink 1s step-end infinite;
   opacity: 1;
@@ -371,7 +369,6 @@ body {
 }
 
 
-
 /* =========================================
    4-1. 自己紹介(名前)
    ========================================= */
@@ -379,11 +376,12 @@ body {
 .intro-name-section {
     font-family: Consolas, "Courier New", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier, monospace;
     line-height: 1.4;
-    height: 50vh;
+    /* height: 50vh; */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10%;
+    padding: 100px 10%;
+    margin-bottom: 60px;
 }
 
 .intro-name-container {
@@ -484,7 +482,7 @@ body {
 }
 
 /* レスポンシブ対応（スマホ表示時に縦に並べる）*反応してないかも */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .intro-name-container {
         flex-direction: column-reverse;
         text-align: center;
@@ -520,5 +518,175 @@ body {
 
 
 /* =========================================
-   4-2. 自己紹介(活動実績)
+   4-2. 自己紹介(活動実績・スキルスタック)
    ========================================= */
+
+h2.section-title {
+    font-size: 2.2rem; /* タイトルを大きく */
+    font-weight: normal;
+    margin-bottom: 60px;
+}
+
+/* --- 横並び（Flexbox）レイアウト --- */
+.achieve-skill-flex-wrapper {
+    display: flex;
+    max-width: 1400px; /* 画面全体の最大幅。好みに合わせて調整してください */
+    margin: 0 auto;
+    gap: 0px; 
+}
+
+/* 各セクションの横幅 */
+.achievements-section {
+    flex: 1;
+    width: 50%;
+    padding-left: 30px;  /* ★新設：画面左端と、実績の白い太線との間のスペース */
+    padding-right: 50px; /* 中央の縦線と、実績の文字との間の余白 */
+    box-sizing: border-box;
+}
+
+.skills-section {
+    flex: 1; /* 1:1 の比率（50%） */
+    width: 50%;
+    border-left: 2px solid #ffffff; /* これが画面のど真通る縦線 */
+    padding-left: 50px; /* 縦線と、スキルアイコンとの間の余白 */
+    box-sizing: border-box;}
+
+/* --- 活動実績のスタイル --- */
+.achievement-list {
+    width: 100%;
+}
+
+.achievement-item {
+    margin-bottom: 35px;
+    display: flex;
+}
+
+/* 左側の白い太線 */
+.achievement-content {
+    border-left: 5px solid #ffffff; 
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.achievement-name {
+    font-size: 1.6rem;
+    font-weight: normal;
+    margin: 0 0 12px 0;
+    color: #ffffff;
+}
+
+/* 青いボタン */
+.btn-intro {
+    display: inline-block;
+    background-color: #007bff; 
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 10px 24px;
+    border-radius: 0px; 
+}
+
+.btn-intro:hover {
+    background-color: #0069d9;
+}
+
+/* さらに表示ボタン */
+.more-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: block;
+    text-align: left;
+}
+
+.hidden-elements {
+    display: none;
+}
+
+/* --- スキルスタックのスタイル（真ん中の線に引っ付く左寄せ） --- */
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap; /* 横並びにして、溢れたら下へ */
+    justify-content: flex-start; /* 線に引っ付くように左寄せ */
+    gap: 20px;
+    width: 100%;
+}
+
+.skill-item {
+    background-color: #6968c7; 
+    border: 1px solid #444;
+    padding: 20px 15px;
+    width: 130px; /* 固定幅にして綺麗に四角を保つ */
+    text-align: center;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skill-icon {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.skill-duration {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.skill-extra {
+    font-size: 0.8rem;
+    color: #aaaaaa;
+}
+
+.skill-extra.atcoder {
+    color: #db7500; 
+}
+
+.skill-item.learning {
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+
+@media (max-width: 900px) {
+    .achieve-skill-flex-wrapper {
+        flex-direction: column; 
+        align-items: center; /* ★追加：子要素（各セクションのコンテナ）を画面の真ん中に寄せる */
+        padding: 0 20px;     /* 画面端に張り付かないためのクッション */
+        box-sizing: border-box;
+    }
+    .achievements-section {
+        width: 100%;
+        max-width: 500px; /* ★コンテナの最大幅を制限して、だらしなく横に広がらないようにする */
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .skills-section {
+        border-left: none; /* ど真ん中の線を消す */
+        margin-top: 60px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+
+
+
+/* =========================================
+   4-2. 自己紹介()
+   ========================================= */
+

@@ -257,16 +257,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingTarget = document.getElementById('typing-target');
     if (typingTarget) {
         const data = [
+            //旧キーフレーズ
+            // { text: "「", class: "symbol" },
+            // { text: "ロジック", class: "keyword" },
+            // { text: "で", class: "text" },
+            // { text: "チーム", class: "variable" },
+            // { text: "と", class: "text" },
+            // { text: "システム", class: "variable" },
+            // { text: "を", class: "text" },
+            // { text: "「最適」", class: "optimum" },
+            // { text: "へ", class: "text" },
+            // { text: "導く", class: "function" },
+            // { text: "」", class: "symbol" },
             { text: "「", class: "symbol" },
-            { text: "ロジック", class: "keyword" },
-            { text: "で", class: "text" },
-            { text: "チーム", class: "variable" },
-            { text: "と", class: "text" },
-            { text: "システム", class: "variable" },
+            { text: "　", class: "empty" },
+            { text: "全体を見据えて", class: "keyword" },
+            { text: "　", class: "empty" },
+            { text: "設計", class: "variable" },
+            // { text: "　", class: "empty" },
             { text: "を", class: "text" },
-            { text: "「最適」", class: "optimum" },
-            { text: "へ", class: "text" },
-            { text: "導く", class: "function" },
+            // { text: "　", class: "empty" },
+            { text: "最適化", class: "optimum" },
+            { text: "する", class: "function" },
             { text: "」", class: "symbol" },
         ];
 
@@ -284,6 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // B. 監視マネージャー起動
     scrollManager.init();
 });
+
+
+/* 活動実績部分 ----------------------------------------------*/
+
+// DOM要素の取得
+const toggleBtn = document.getElementById('toggle-btn');
+const moreAchievements = document.getElementById('more-achievements');
+
+// 「さらに表示」ボタンのクリックイベント
+toggleBtn.addEventListener('click', () => {
+    // hidden-elements クラスを付け外しして表示/非表示をパッと切り替え
+    moreAchievements.classList.toggle('hidden-elements');
+    
+    // 状態に合わせてボタンのテキストを変更
+    if (moreAchievements.classList.contains('hidden-elements')) {
+        toggleBtn.textContent = '▼ さらに表示';
+    } else {
+        toggleBtn.textContent = '▲ 閉じる';
+    }
+});
+
+
 
 
 
