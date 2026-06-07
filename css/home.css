@@ -30,7 +30,7 @@
     --hub-section-height: 100vh; /* 最上部は画面いっぱいに */
     --about-me-min-height: 100vh; /* About Meも十分な高さを */
 
-    --text-default: #a3a3a3;
+    --text-default: #cacaca;
     --object-color: #009255;   /* 緑：オブジェクト・クラス名 */
     --keyword-color: #25a0e7;  /* 青：型・予約語 */
     --variable-color: #8ed5ff; /* 水色：変数 */
@@ -62,6 +62,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden; /* 横スクロールを防止 */
 }
+
 
 /* body, html {
     width: 100%;
@@ -100,6 +101,9 @@ body {
    
 /* --- 2. 外枠（中央寄せの要） --- */
 .hub-outer-wrapper {
+    /* header分の調整 */
+    margin-top: 80px;
+
     width: 100vw;
     height: auto;
     background-color: var(--hub-bg);
@@ -329,7 +333,7 @@ body {
 /* 各要素の配色とサイズ調整-------------*/
 /* font-size を rem ではなく、親からの倍率（em）にすることで、画面幅に合わせて連動して縮むようになります */
 .keyword  { color: var(--keyword-color); font-size: 1.1em; } /* 例：基準より少し大きく */
-.variable { color: var(--variable-color); font-size: 1.0em; }
+.variable { color: var(--variable-color); font-size: 1.25em; }
 .function { color: var(--function-color); }
 .symbol   { color: var(--symbol-color); }
 .text     { color: var(--text-default); opacity: 0.8; }
@@ -523,14 +527,14 @@ body {
 
 h2.section-title {
     font-size: 2.2rem; /* タイトルを大きく */
-    font-weight: normal;
+    font-weight: bold;
     margin-bottom: 60px;
 }
 
-/* --- 横並び（Flexbox）レイアウト --- */
+/* --- このセクションのコンテナ 横並び（Flexbox）レイアウト --- */
 .achieve-skill-flex-wrapper {
     display: flex;
-    max-width: 1400px; /* 画面全体の最大幅。好みに合わせて調整してください */
+    max-width: 1200px;
     margin: 0 auto;
     gap: 0px; 
 }
@@ -661,25 +665,31 @@ h2.section-title {
 
 
 @media (max-width: 900px) {
+
     .achieve-skill-flex-wrapper {
         flex-direction: column; 
-        align-items: center; /* ★追加：子要素（各セクションのコンテナ）を画面の真ん中に寄せる */
-        padding: 0 20px;     /* 画面端に張り付かないためのクッション */
+        align-items: center; 
+        padding: 0;
         box-sizing: border-box;
     }
+    
+    /* 【活動実績】 */
     .achievements-section {
         width: 100%;
-        max-width: 500px; /* ★コンテナの最大幅を制限して、だらしなく横に広がらないようにする */
+        max-width: 650px;
         padding-right: 0;
         padding-left: 0;
+        padding-bottom: 100px;
     }
+    
+    /* 【スキルスタック】 */
     .skills-section {
-        border-left: none; /* ど真ん中の線を消す */
-        margin-top: 60px;
+        border-left: none; 
+        margin-top: 50px;
         padding-left: 0;
         padding-right: 0;
         width: 100%;
-        max-width: 500px;
+        max-width: 650px;
     }
 }
 
@@ -687,6 +697,138 @@ h2.section-title {
 
 
 /* =========================================
-   4-2. 自己紹介()
+   4-2. 自己紹介(説明部分)
    ========================================= */
 
+/* 各セクションの共通スタイル */
+.section-block {
+    display: table;
+    max-width: 1200px;
+    table-layout: fixed;
+    margin: 200px auto;
+}
+
+
+.left-col, .right-col {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+
+/* イラスト・ビジュアル部分のプレースホルダー */
+.visual-placeholder {
+    position: relative;
+    background-color: #3f3f93; /* 手書き画像に近い青紫 */
+    aspect-ratio: 1 / 1;
+    width: 85%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid #1f8ab4;
+}
+
+/* 画像が挿入されたときのスタイル */
+.visual-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    object-fit: cover; /* 枠線に合わせて綺麗にトリミング */
+    z-index: 2;
+}
+
+/* 画像ファイルが読み込めない、または設定されていない時用のテキスト */
+.visual-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    z-index: 1;
+}
+
+/* テキストエリアの調整 */
+.text-area {
+    padding: 0 40px;
+}
+
+/* テキストコンポーネント（共通のフォントスタイル） */
+.phrase-heading {
+    font-size: 2.6rem;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 28px;
+    letter-spacing: 0.06em;
+}
+
+.phrase-heading span {
+    font-weight: bold;
+}
+
+.phrase-heading span.highlight {
+    color: var(--string-color);
+    padding-bottom: 2px;
+}
+
+.phrase-heading span.underline {
+    color: var(--variable-color);
+    padding-bottom: 2px;
+}
+
+.phrase-description {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: #e2e2e2;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+/* セクション2: こだわり部分の余白調整 */
+.hobby-section {
+    margin-top: 100px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .section-block {
+        display: block;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    
+    .left-col, .right-col {
+        display: block;
+        width: 100%;
+    }
+
+    .section-block:not(.hobby-section) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .hobby-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-col {
+        margin-bottom: 0;
+    }
+
+    .text-area {
+        padding: 0;
+        margin: 0 auto 30px auto;
+        width: 100%;
+        max-width: 92%;
+        text-align: left;
+    }
+
+    .visual-placeholder {
+        width: 100%;
+        max-width: 92%;
+        margin: 0 auto; 
+    }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Header</title>
+
+<style>
+/* ヘッダー全体 */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1f2933;
+        padding: 20px 20px;
+        
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+
+    /* 左側名前 */
+    .logo {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* ナビ全体 */
+    nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    nav a, .dropdown-btn {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    nav a:hover, .dropdown-btn:hover {
+        background: #3a4a5a;
+        border-radius: 5px;
+    }
+
+    /* ドロップダウン親 */
+    .dropdown {
+        position: relative;
+    }
+
+    /* ドロップダウン中身 */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #d9d9d9;
+        color: black;
+        min-width: 160px;
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 1000;
+    }
+
+    .dropdown-content a {
+        display: block;
+        padding: 10px;
+        color: black;
+    }
+
+    .dropdown-content a:hover {
+        background: #c0c0c0;
+    }
+
+    /* ホバーで表示 */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* ちょいUI調整 */
+    .container {
+        padding: 40px;
+    }
+
+    header a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    header a:hover {
+        opacity: 0.8;
+    }
+
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="#">岸田 匠馬 (UnS404) ポートフォリオ</a>
+    </div>
+
+    <nav>
+        <!-- Top = 自己紹介 -->
+        <a href="#">Top</a>
+
+        <a href="#">作品一覧</a>
+
+        <div class="dropdown">
+            <div class="dropdown-btn">作品詳細</div>
+            <div class="dropdown-content">
+                <a href="#">GravityRun</a>
+                <a href="#">Code:Loader</a>
+                <a href="#">百草パーク</a>
+            </div>
+        </div>
+
+        <!-- <a href="#">Game Engineer</a> -->
+    </nav>
+</header>
+
+</body>
+</html>

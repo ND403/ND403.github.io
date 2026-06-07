@@ -1,0 +1,232 @@
+/* ==========================================================================
+   作品一覧画面（Works Section）共通スタイルテンプレート
+   ========================================================================== */
+
+/* 全体ベース設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000; /* ダーク背景 */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+    padding: 60px 20px;
+}
+
+/* --- 1. ヘッダーエリア (h1) --- */
+.works-header {
+    margin-bottom: 60px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 20px;
+}
+
+.works-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+
+.works-header .subtitle {
+    font-size: 0.85rem;
+    color: #888888;
+    font-family: monospace;
+    margin-top: 5px;
+    letter-spacing: 0.2em;
+}
+
+/* --- 2. 作品カード全体構造 (レイアウト) --- */
+.works-section {
+    display: block;
+}
+
+.work-card {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    padding: 30px; /* カードの内側に少し余白を作って、タイトルとコンテンツを包む */
+    margin-bottom: 80px;
+}
+
+/* 上部：タイトルエリアのスタイル */
+.work-heading {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 15px;
+}
+
+.work-title {
+    font-size: 1.8rem; /* 少し大きく目立たせました */
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.work-genre {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}
+
+/* 下部：左右2カラムのコンテナ */
+.work-body {
+    display: table;
+    width: 100%;
+}
+
+/* 左側：メディアエリア（45%） */
+.work-media {
+    display: table-cell;
+    width: 45%;
+    vertical-align: top;
+}
+
+/* ★ 16:9 の比率を厳格に維持するロジック */
+.media-aspect-ratio {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* モダンブラウザで16:9を固定する指定 */
+    position: relative;
+    overflow: hidden;
+    background-color: #222222;
+}
+
+/* 水色プレースホルダー */
+.media-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9cd6f4; /* ワイヤーの水色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.media-placeholder span {
+    color: #333333;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 右側：テキスト情報エリア（55%） */
+.work-info {
+    display: table-cell;
+    width: 55%;
+    padding-left: 40px; /* 左側の画像との間の余白 */
+    vertical-align: top;
+}
+
+/* --- 3. 作品情報内の詳細パーツ --- */
+
+/* キャッチコピー */
+.work-catchphrase {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 3px solid #9cd6f4;
+}
+
+.work-catchphrase h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* 基本スペック */
+.work-specs {
+    margin-bottom: 25px;
+}
+
+.spec-row {
+    border-bottom: 1px solid #2a2a2a;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-row dt {
+    display: inline-block;
+    width: 100px;
+    color: #888888;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.spec-row dd {
+    display: inline-block;
+    color: #dddddd;
+    vertical-align: top;
+}
+
+/* 実績バッジ */
+.badge-status {
+    display: inline-block;
+    background-color: #2a2a2a;
+    color: #9cd6f4;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid #3a3a3a;
+}
+
+/* --- 4. 詳細ボタン --- */
+.work-action {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.btn-detail {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    padding: 10px 20px;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease;
+}
+
+.btn-detail:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+.arrow-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* --- 5. レスポンシブ対応（スマホサイズ） --- */
+@media (max-width: 768px) {
+    .work-body {
+        display: block; /* 縦並びに */
+    }
+    .work-media, .work-info {
+        display: block;
+        width: 100%;
+    }
+    .work-info {
+        padding-left: 0;
+        padding-top: 25px;
+    }
+    .work-action {
+        text-align: left;
+    }
+}

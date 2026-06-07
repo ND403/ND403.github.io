@@ -2,6 +2,16 @@
 .container {
     background-color: black;
 }
+
+:root{
+    --text-default: #a3a3a3;
+    --object-color: #009255;   /* 緑：オブジェクト・クラス名 */
+    --keyword-color: #25a0e7;  /* 青：型・予約語 */
+    --variable-color: #8ed5ff; /* 水色：変数 */
+    --function-color: #dcdcaa; /* 黄：関数 */
+    --string-color: #db9d16;   /* オレンジ：文字列・強調 */
+    --symbol-color: #808080;   /* グレー：記号 */
+}
 /* 全体container終わり---------------------------- */
 
 
@@ -589,6 +599,162 @@ h2.section-title {
 
 
 
+/* 説明部分------------------------------*/
+/* 全体のリセットと基本スタイル */
+/* *, *::before, *::after {
+    box-sizing: border-box;
+} */
+
+/* body {
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    min-height: 100vh;
+} */
+
+/* 各セクションの共通スタイル */
+/* .section-block {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 80px;
+}
+
+.left-col, .right-col {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+} */
+
+/* イラスト・ビジュアル部分のプレースホルダー */
+/* .visual-placeholder {
+    position: relative;
+    background-color: #3f3f93;
+    aspect-ratio: 1 / 1;
+    width: 85%;
+    margin: 0 auto;
+    overflow: hidden;
+} */
+
+/* 画像が挿入されたときのスタイル */
+/* .visual-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+} */
+
+/* 画像ファイルが読み込めない、または設定されていない時用のテキスト */
+/* .visual-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    z-index: 1;
+} */
+
+/* テキストエリアの調整 */
+/* .text-area {
+    padding: 0 40px;
+} */
+
+/* テキストコンポーネント（共通のフォントスタイル） */
+/* .phrase-heading {
+    color: #eeeeee;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+}
+
+.phrase-heading span.highlight {
+    color: var(--string-color);
+    padding-bottom: 2px;
+}
+
+.phrase-heading span.underline {
+    color: var(--variable-color);
+    padding-bottom: 2px;
+}
+
+.phrase-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #dddddd;
+    margin: 0;
+} */
+
+/* セクション2: こだわり部分の余白調整 */
+/* .hobby-section {
+    margin-top: 100px;
+} */
+
+/* レスポンシブ対応 */
+/* @media (max-width: 768px) { */
+    /* テーブルレイアウトを解除してブロック化 */
+    /* .section-block {
+        display: block;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    
+    .left-col, .right-col {
+        display: block;
+        width: 100%;
+    } */
+
+    /* セクション1（キャッチフレーズ）: 
+       HTMLの順番（イラストが先、テキストが後）をスマホ時だけ逆転させ、
+       「説明が先、イラストが後」の順番にする設定
+    */
+    /* .section-block:not(.hobby-section) {
+        display: flex; */
+        /* flex-direction: column-reverse; 上下を入れ替える */
+    /* } */
+
+    /* .hobby-section {
+        display: flex;
+        flex-direction: column;
+    } */
+
+    /* スマホ時の余白調整 */
+    /* .left-col {
+        margin-bottom: 0;
+    } */
+
+    /* .text-area {
+        padding: 0;
+        margin: 0 auto 30px auto;
+        width: 100%;
+        max-width: 400px;
+        text-align: left;
+    }
+
+*    .visual-placeholder {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto; 
+    }
+} */
+
+
+
+
+
+
+
+
 /* 部分------------------------------*/
+
 
 
