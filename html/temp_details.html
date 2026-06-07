@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【作品タイトル】 | 作品詳細</title>
+    <link rel="stylesheet" href="../css/temp_details.css">
+</head>
+<body>
+    <!-- header -->
+    <div id="header"></div>
+
+
+    <main class="detail-container">
+        
+        <div class="detail-project-header">
+            <div class="header-left">
+                <h1 class="project-title">【作品タイトル / ロゴ画像】</h1>
+                <span class="project-genre">【作品のジャンル（例：3Dパズルアクション）】</span>
+            </div>
+            <div class="header-right-links">
+                <a href="【GitHubのURL】" class="text-link" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">📁</span> GitHub ↗
+                </a>
+                <a href="【unityroom等のURL】" class="text-link" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">🎮</span> プレイ ↗
+                </a>
+            </div>
+        </div>
+
+        <section class="fv-section">
+            <div class="video-aspect-ratio">
+                <div class="video-placeholder">
+                    <span>【メインプレイ動画 / YouTube埋め込み等 (16:9)】</span>
+                </div>
+            </div>
+            <div class="project-catchphrase">
+                <h2>【技術的なキャッチコピー（例：コード設計でチームのハブとなり、大規模開発を効率化）】</h2>
+            </div>
+        </section>
+
+        <section class="spec-overview-section">
+            <div class="spec-block">
+                <h3>開発環境・スペック</h3>
+                <table class="spec-table">
+                    <tr>
+                        <th>開発人数</th>
+                        <td>【人数（例：10人 / プログラマー3人）】</td>
+                    </tr>
+                    <tr>
+                        <th>開発期間</th>
+                        <td>【期間（例：3ヶ月）】</td>
+                    </tr>
+                    <tr>
+                        <th>使用ツール</th>
+                        <td>【言語・エンジン（例：Unity / C#）】</td>
+                    </tr>
+                    <tr>
+                        <th>担当範囲</th>
+                        <td>【自分の役割（例：共通基盤設計、敵キャラクターAI、リファクタリング）】</td>
+                    </tr>
+                    <tr>
+                        <th>活動実績</th>
+                        <td>【実績（例：東京ゲームショウ出展 / Steamリリース予定）】</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="overview-block">
+                <h3>作品概要</h3>
+                <p class="game-description">
+                    【ゲームの全体的な概要・ルール・世界観をここに簡潔に記述。】
+                </p>
+                <div class="sub-screenshots">
+                    <div class="ss-placeholder"><span>【補足スクショ / GIF 1】</span></div>
+                    <div class="ss-placeholder"><span>【補足スクショ / GIF 2】</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="appeals-section">
+            <h3 class="section-title">技術的アピール・工夫した点</h3>
+
+            <article class="appeal-card">
+                <div class="appeal-text-content">
+                    <h4 class="appeal-title"><span class="appeal-number">01</span> 【アピールテーマ】</h4>
+                    <dl class="star-structure">
+                        <dt>【課題・背景】</dt>
+                        <dd>【どのような問題が発生していたか】</dd>
+                        <dt>【アプローチ / Logic】</dt>
+                        <dd>【どういう設計・アルゴリズムで解決したか】</dd>
+                        <dt>【結果】</dt>
+                        <dd>【どう改善されたか】</dd>
+                    </dl>
+                </div>
+                <div class="appeal-code-block image-mode">
+                    <div class="code-header">
+                        <span class="code-filename">【関連するスクリプト名 (例：GameManager.cs)】</span>
+                    </div>
+                    <div class="code-image-container">
+                        <img src="../img/screenshot_gamemanager.png" alt="GameManager.cs ソースコード" class="code-screenshot">
+                    </div>
+                </div>
+                <!-- <div class="appeal-code-block">
+                    <div class="code-header">
+                        <span class="code-filename">【関連するスクリプト名 (例：GameManager.cs)】</span>
+                    </div>
+                    <pre><code>// 【ここに工夫したソースコードの核心部分を抜粋して記述】
+public class GameManager : MonoBehaviour {
+    void Start() {
+        // ロジカルなコードをここに記述
+    }
+}</code></pre>
+                </div> -->
+            </article>
+
+            <article class="appeal-card">
+                <div class="appeal-text-content">
+                    <h4 class="appeal-title"><span class="appeal-number">02</span> 【アピールテーマ】</h4>
+                    <dl class="star-structure">
+                        <dt>【課題・背景】</dt>
+                        <dd>【課題の記述】</dd>
+                        <dt>【アプローチ / Logic】</dt>
+                        <dd>【アプローチの記述】</dd>
+                        <dt>【結果】</dt>
+                        <dd>【結果の記述】</dd>
+                    </dl>
+                </div>
+                <div class="appeal-code-block">
+                    <div class="code-header">
+                        <span class="code-filename">【EnemyState.cs】</span>
+                    </div>
+                    <pre><code>public abstract class EnemyState {
+    public abstract void UpdateState(EnemyController enemy);
+}</code></pre>
+                </div>
+            </article>
+
+            <article class="appeal-card">
+                <div class="appeal-text-content">
+                    <h4 class="appeal-title"><span class="appeal-number">03</span> 【アピールテーマ】</h4>
+                    <dl class="star-structure">
+                        <dt>【課題・背景】</dt>
+                        <dd>【課題の記述】</dd>
+                        <dt>【アプローチ / Logic】</dt>
+                        <dd>【アプローチの記述】</dd>
+                        <dt>【結果】</dt>
+                        <dd>【結果の記述】</dd>
+                    </dl>
+                </div>
+                <div class="appeal-code-block">
+                    <div class="code-header">
+                        <span class="code-filename">【EnemyEditor.cs】</span>
+                    </div>
+                    <pre><code>#if UNITY_EDITOR
+[CustomEditor(typeof(EnemyController))]
+public class EnemyEditor : Editor {
+    // カスタムインスペクタの処理
+}
+#endif</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="action-links-section">
+            <h3>各種リンク</h3>
+            <p class="action-lead">本プロジェクトの全ソースコードの確認、および実際のゲームプレイは以下より行えます。</p>
+            
+            <div class="large-btn-group">
+                <a href="【GitHubのURL】" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                    <span class="btn-icon">🚀</span>
+                    <div class="btn-text">
+                        <span class="btn-main">VIEW FULL SOURCE</span>
+                        <span class="btn-sub">全ソースコードを確認する</span>
+                    </div>
+                </a>
+                <a href="【unityroom等のURL】" class="btn-accent" target="_blank" rel="noopener noreferrer">
+                    <span class="btn-icon">🎮</span>
+                    <div class="btn-text">
+                        <span class="btn-main">PLAY THE GAME</span>
+                        <span class="btn-sub">実際にゲームを遊ぶ</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="detail-project-footer">
+            <div class="postscript-block">
+                <h4>制作を終えての総括</h4>
+                <p>
+                    【この作品の開発を通じて、プログラマーとして、またチームのハブとして何を学び、どう成長したかの総括をここに記述します。】
+                </p>
+            </div>
+            <div class="back-to-home">
+                <a href="works.html">← 作品一覧へ戻る</a>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- footer -->
+    <div id="footer"></div>
+    <!-- header/footer自動配置 -->
+    <script src="../src/loadComponents.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,367 @@
+/* ==========================================================================
+   作品詳細画面（temp_details.css）共通スタイルテンプレート (V2)
+   ========================================================================== */
+
+/* 全体ベース設定 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+}
+
+.detail-container {
+    max-width: 1100px;
+    margin: 0 auto ;
+    margin-top: 80px;
+    padding: 60px 20px;
+}
+
+/* --- 1. タイトル ＆ リンクエリア（固有クラス指定） --- */
+.detail-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.project-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.project-genre {
+    font-size: 0.95rem;
+    color: #aaaaaa;
+    margin-top: 5px;
+    display: block;
+}
+
+.header-right-links {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.text-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: monospace;
+    border: 1px solid #333333;
+    padding: 6px 14px;
+    background-color: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.text-link:hover {
+    border-color: #9cd6f4;
+    color: #9cd6f4;
+    background-color: #1e262b;
+}
+
+/* --- 2. メイン動画 ＆ キャッチコピー --- */
+.fv-section {
+    margin-bottom: 60px;
+}
+
+.video-aspect-ratio {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #222222;
+    position: relative;
+    border: 1px solid #2a2a2a;
+    margin-bottom: 25px;
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #1e2930;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder span {
+    color: #9cd6f4;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.project-catchphrase {
+    padding-left: 15px;
+    border-left: 4px solid #9cd6f4;
+}
+
+.project-catchphrase h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+/* --- 3. 基本スペック ＆ ゲーム概要（左右2カラム） --- */
+.spec-overview-section {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 80px;
+    padding: 40px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.spec-block { flex: 1; }
+.overview-block { flex: 1.2; }
+
+.spec-overview-section h3 {
+    font-size: 1.1rem;
+    font-family: monospace;
+    color: #888888;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spec-table th, .spec-table td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #222222;
+    vertical-align: top;
+}
+
+.spec-table th {
+    width: 120px;
+    color: #aaaaaa;
+    text-align: left;
+}
+
+.spec-table td { color: #dddddd; }
+
+.game-description {
+    font-size: 0.95rem;
+    color: #dddddd;
+    margin-bottom: 20px;
+}
+
+.sub-screenshots {
+    display: flex;
+    gap: 15px;
+}
+
+.ss-placeholder {
+    flex: 1;
+    aspect-ratio: 16 / 9;
+    background-color: #222222;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ss-placeholder span { font-size: 0.8rem; color: #666666; }
+
+/* --- 4. 3つのアピールポイント（縦並び・コード付き） --- */
+.appeals-section { margin-bottom: 80px; }
+
+.appeals-section .section-title {
+    font-size: 1.3rem;
+    font-family: monospace;
+    color: #888888;
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.appeal-card {
+    background-color: #161616;
+    border: 1px solid #222222;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+.appeal-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.appeal-number {
+    font-family: monospace;
+    color: #9cd6f4;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #9cd6f4;
+}
+
+.star-structure dt {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #9cd6f4;
+    margin-top: 15px;
+}
+
+.star-structure dd {
+    font-size: 0.95rem;
+    color: #dddddd;
+    margin-bottom: 15px;
+}
+
+/* --- コードを画像で表示する場合の専用スタイル --- */
+
+.appeal-code-block.image-mode {
+    background-color: #1e1e1e;
+}
+
+.code-image-container {
+    width: 100%;
+    padding: 15px;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: auto;
+}
+
+.code-screenshot {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 黒背景エディタ風コードブロック --- */
+.appeal-code-block {
+    margin-top: 30px;
+    border: 1px solid #2d2d2d;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.code-header {
+    background-color: #202020;
+    padding: 8px 15px;
+    border-bottom: 1px solid #2d2d2d;
+}
+
+.code-filename {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+}
+
+.appeal-code-block pre {
+    background-color: #0f0f0f;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.appeal-code-block code {
+    font-family: 'Consolas', monospace;
+    font-size: 0.85rem;
+    color: #a9b7c6;
+}
+
+/* --- 5. 最下部プロジェクト大ボタンエリア --- */
+.action-links-section {
+    text-align: center;
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    padding: 50px 30px;
+    margin-bottom: 60px;
+}
+
+.action-lead {
+    font-size: 0.95rem;
+    color: #aaaaaa;
+    margin-bottom: 30px;
+}
+
+.large-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.btn-primary, .btn-accent {
+    flex: 1;
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    padding: 18px 25px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #222222;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #2e2e2e;
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background-color: #9cd6f4;
+    border: 1px solid #9cd6f4;
+    color: #121212;
+}
+
+.btn-accent:hover {
+    background-color: #b3e2fa;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(156, 214, 244, 0.3);
+}
+
+.btn-icon { font-size: 1.8rem; }
+.btn-text { display: flex; flex-direction: column; }
+.btn-main { font-family: monospace; font-size: 1.1rem; font-weight: bold; }
+.btn-sub { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+
+/* --- 6. 締めくくり・結び（固有クラス指定に変更） --- */
+.detail-project-footer {
+    margin-top: 40px;
+}
+
+.postscript-block {
+    background-color: #161616;
+    border-left: 3px solid #888888;
+    padding: 25px;
+}
+
+.back-to-home { text-align: center; padding: 30px 0; }
+.back-to-home a { color: #888888; text-decoration: none; font-size: 0.9rem; }
+.back-to-home a:hover { color: #ffffff; }
+
+/* --- 7. スマホ用レスポンシブ --- */
+@media (max-width: 850px) {
+    .spec-overview-section { flex-direction: column; gap: 30px; }
+    .large-btn-group { flex-direction: column; align-items: center; gap: 15px; }
+    .btn-primary, .btn-accent { width: 100%; max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+    .detail-project-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .header-right-links { width: 100%; justify-content: flex-start; }
+    .project-title { font-size: 1.8rem; }
+}
