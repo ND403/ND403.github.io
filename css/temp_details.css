@@ -181,6 +181,12 @@ body {
     justify-content: center;
 }
 
+.ss-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .ss-placeholder span { font-size: 0.8rem; color: #666666; }
 
 /* --- 4. 3つのアピールポイント（縦並び・コード付き） --- */
