@@ -309,6 +309,7 @@ body {
   line-height: 1.2;
   color: var(--text-default);
   white-space: nowrap;
+  zoom: 0.8;
 }
 
 .line {
