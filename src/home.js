@@ -1,25 +1,73 @@
 /////////////////////////////////////////
 /// top動画制御
 /////////////////////////////////////////
+/////////////////////////////////////////
+/// top動画制御 (YouTube API版)
+/////////////////////////////////////////
+
+// 1. mp4パスを YouTubeの動画ID (例: dQw4w9WgXcQ) に変更
 const playlist = [
-    { src: '../video/gravity_run_temp1.mp4', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
-    { src: '../video/code_loader_temp2.mp4', img: '../images/code_loader_logo.png', title: 'CODE:LOADER' },
-    { src: '../video/mogusa_park_temp3.mp4', img: '../images/temp.png', title: '百草Park' }
+    { youtubeId: 'eb8mqgTcS6U', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
+    { youtubeId: 'YouTube動画ID2', img: '../images/code_loader_logo.png', title: 'CODE:LOADER' },
+    { youtubeId: 'YouTube動画ID3', img: '../images/temp.png', title: '百草Park' }
 ];
 
 let currentIndex = 0;
-const video = document.getElementById('main-video');
+let player = null;
+let progressInterval = null;
+
 const titleImg = document.getElementById('video-title-img');
 const indexContainer = document.getElementById('side-index');
 const progressInner = document.getElementById('progress-inner');
 
+// YouTube IFrame Player API スクリプトを動的に読み込み
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// APIの準備ができたら呼び出される関数
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        videoId: playlist[0].youtubeId,
+        playerVars: {
+            'autoplay': 1,
+            'controls': 0,        // コントロールUI非表示
+            'disablekb': 1,       // キーボード操作無効化
+            'fs': 0,              // 全画面ボタン非表示
+            'rel': 0,             // 関連動画非表示
+            'modestbranding': 1,  // ロゴ非表示
+            'iv_load_policy': 3,  // アノテーション非表示
+            'mute': 1             // 自動再生用ミュート
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// プレイヤー準備完了時
+function onPlayerReady(event) {
+    event.target.mute();
+    event.target.playVideo();
+    init();
+}
+
+// 動画の再生状態変化を検知 (終了時に次の動画へ)
+function onPlayerStateChange(event) {
+    // 0 = YT.PlayerState.ENDED (再生終了)
+    if (event.data === 0) {
+        updateGallery((currentIndex + 1) % playlist.length);
+    }
+}
 
 function init() {
+    indexContainer.innerHTML = ''; // 重複防止クリア
     playlist.forEach((item, index) => {
         const bar = document.createElement('div');
         bar.classList.add('index-item');
         
-        // 修正：imgではなくspan（テキスト）を作成
         const titleText = document.createElement('span');
         titleText.textContent = item.title;
         titleText.classList.add('index-item-title');
@@ -28,6 +76,7 @@ function init() {
         bar.addEventListener('click', () => updateGallery(index));
         indexContainer.appendChild(bar);
     });
+
     updateGallery(0);
 }
 
@@ -48,22 +97,95 @@ function updateGallery(index) {
         item.classList.toggle('active', i === currentIndex);
     });
 
-    // 動画再生
-    video.src = data.src;
-    video.load();
-    video.play().catch(e => console.log("Play blocked"));
+    // YouTube動画のロードと再生
+    if (player && player.loadVideoById) {
+        player.loadVideoById(data.youtubeId);
+    }
+
+    // プログレスバー更新タイマーの開始
+    startProgressTimer();
 }
 
-video.addEventListener('timeupdate', () => {
-    if (video.duration) {
-        const percent = (video.currentTime / video.duration) * 100;
-        progressInner.style.width = percent + '%';
-    }
-});
+// プログレスバー更新処理 (setIntervalで監視)
+function startProgressTimer() {
+    if (progressInterval) clearInterval(progressInterval);
 
-video.addEventListener('ended', () => {
-    updateGallery((currentIndex + 1) % playlist.length);
-});
+    progressInterval = setInterval(() => {
+        if (player && player.getDuration) {
+            const currentTime = player.getCurrentTime();
+            const duration = player.getDuration();
+            if (duration > 0) {
+                const percent = (currentTime / duration) * 100;
+                progressInner.style.width = percent + '%';
+            }
+        }
+    }, 100);
+}
+
+
+// const playlist = [
+//     { src: '../video/gravity_run_temp1.mp4', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
+//     { src: '../video/code_loader_temp2.mp4', img: '../images/code_loader_logo.png', title: 'CODE:LOADER' },
+//     { src: '../video/mogusa_park_temp3.mp4', img: '../images/temp.png', title: '百草Park' }
+// ];
+
+// let currentIndex = 0;
+// const video = document.getElementById('main-video');
+// const titleImg = document.getElementById('video-title-img');
+// const indexContainer = document.getElementById('side-index');
+// const progressInner = document.getElementById('progress-inner');
+
+
+// function init() {
+//     playlist.forEach((item, index) => {
+//         const bar = document.createElement('div');
+//         bar.classList.add('index-item');
+        
+//         // 修正：imgではなくspan（テキスト）を作成
+//         const titleText = document.createElement('span');
+//         titleText.textContent = item.title;
+//         titleText.classList.add('index-item-title');
+        
+//         bar.appendChild(titleText);
+//         bar.addEventListener('click', () => updateGallery(index));
+//         indexContainer.appendChild(bar);
+//     });
+//     updateGallery(0);
+// }
+
+// function updateGallery(index) {
+//     currentIndex = index;
+//     const data = playlist[currentIndex];
+
+//     // ロゴのフェード切り替え
+//     titleImg.style.opacity = 0;
+//     setTimeout(() => {
+//         titleImg.src = data.img;
+//         titleImg.style.opacity = 1;
+//     }, 400);
+
+//     // インデックスのアクティブ切り替え
+//     const items = document.querySelectorAll('.index-item');
+//     items.forEach((item, i) => {
+//         item.classList.toggle('active', i === currentIndex);
+//     });
+
+//     // 動画再生
+//     video.src = data.src;
+//     video.load();
+//     video.play().catch(e => console.log("Play blocked"));
+// }
+
+// video.addEventListener('timeupdate', () => {
+//     if (video.duration) {
+//         const percent = (video.currentTime / video.duration) * 100;
+//         progressInner.style.width = percent + '%';
+//     }
+// });
+
+// video.addEventListener('ended', () => {
+//     updateGallery((currentIndex + 1) % playlist.length);
+// });
 
 
 

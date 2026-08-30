@@ -129,7 +129,7 @@ body {
 }
 
 /* --- 4. 動画・視認性オーバーレイ --- */
-.hub-video-bg {
+/* .hub-video-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -137,6 +137,37 @@ body {
     height: 100%;
     object-fit: contain;
     z-index: 1;
+} */
+
+/* --- 動画コンテナエリア --- */
+.hub-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none; /* UIのクリック操作を邪魔しない設定 */
+}
+
+/* 16:9の比率を保ったまま領域いっぱいに広げるラッパー */
+.youtube-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* iframe（YouTube本体）を親要素いっぱいにフィットさせる */
+#youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; /* 黒帯が出ても映像を絶対にカットしない設定 */
 }
 
 /* 左右・下を暗くするグラデーション */
@@ -154,6 +185,8 @@ body {
     z-index: 5;
     pointer-events: none;
 }
+
+
 
 /* --- 5. UI要素 --- */
 
