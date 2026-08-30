@@ -7,8 +7,8 @@
 
 // 1. mp4パスを YouTubeの動画ID (例: dQw4w9WgXcQ) に変更
 const playlist = [
-    { youtubeId: 'eb8mqgTcS6U', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
     { youtubeId: 'nzGcXKg-ckQ', img: 'Railgun FPS', title: 'Railgun FPS' },
+    // { youtubeId: 'eb8mqgTcS6U', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
     // { youtubeId: 'YouTube動画ID3', img: '../images/temp.png', title: '百草Park' }
 ];
 
