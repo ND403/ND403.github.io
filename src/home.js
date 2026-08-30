@@ -8,8 +8,8 @@
 // 1. mp4パスを YouTubeの動画ID (例: dQw4w9WgXcQ) に変更
 const playlist = [
     { youtubeId: 'eb8mqgTcS6U', img: '../images/gravity_run_logo.png', title: 'Gravity Run' },
-    { youtubeId: 'YouTube動画ID2', img: '../images/code_loader_logo.png', title: 'CODE:LOADER' },
-    { youtubeId: 'YouTube動画ID3', img: '../images/temp.png', title: '百草Park' }
+    { youtubeId: 'nzGcXKg-ckQ', img: 'Railgun FPS', title: 'Railgun FPS' },
+    // { youtubeId: 'YouTube動画ID3', img: '../images/temp.png', title: '百草Park' }
 ];
 
 let currentIndex = 0;
@@ -84,11 +84,30 @@ function updateGallery(index) {
     currentIndex = index;
     const data = playlist[currentIndex];
 
-    // ロゴのフェード切り替え
-    titleImg.style.opacity = 0;
+    // HTML要素の取得
+    const titleContainer = document.querySelector('.video-title-container');
+    const titleImg = document.getElementById('video-title-img');
+    const titleText = document.getElementById('video-title-text');
+
+    // コンテナ全体をフェードアウト
+    titleContainer.style.opacity = 0;
+
     setTimeout(() => {
-        titleImg.src = data.img;
-        titleImg.style.opacity = 1;
+        // imgが存在し、かつ先頭が '../' で始まる場合
+        if (data.img && data.img.startsWith('../')) {
+            titleImg.src = data.img;
+            titleImg.style.display = 'block'; // または 'inline-block'
+            titleText.style.display = 'none';
+        } 
+        // それ以外（imgが無い、または '../' で始まらない文字列の場合）
+        else {
+            titleText.textContent = data.img || ''; // 文字列をセット（未定義なら空文字）
+            titleText.style.display = 'block';      // または 'inline-block'
+            titleImg.style.display = 'none';
+        }
+
+        // コンテナ全体をフェードイン
+        titleContainer.style.opacity = 1;
     }, 400);
 
     // インデックスのアクティブ切り替え
@@ -392,17 +411,26 @@ document.addEventListener('DOMContentLoaded', () => {
             // { text: "導く", class: "function" },
             // { text: "」", class: "symbol" },
             // { text: "　", class: "empty" },
-            { text: "「", class: "symbol" },
-            { text: "未来を見据えて", class: "keyword" },
-            { text: "最適", class: "optimum" },
-            { text: "な", class: "text" },
-            { text: "設計", class: "variable" },
-            { text: "を", class: "text" },
-            { text: "追及する", class: "function" },
-            { text: "」", class: "symbol" },
+            // { text: "「", class: "symbol" },
+            { text: "設計力", class: "keyword" },
+            { text: "と", class: "text" },
+            { text: "ツール開発力", class: "optimum" },
+            { text: "で", class: "text" },
+            // { type: "br" },
+            { text: "ゲーム開発を支える", class: "function" },
+            // { text: "になる", class: "text" },
+            // { text: "」", class: "symbol" },
         ];
 
         data.forEach(item => {
+            // 改行指示（type: 'br'）がある場合
+            if (item.type === 'br') {
+                const br = document.createElement('br');
+                typingTarget.appendChild(br);
+                return;
+            }
+
+            // 通常の文字生成処理
             const chars = item.text.split('');
             chars.forEach(char => {
                 const span = document.createElement('span');

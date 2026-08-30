@@ -198,16 +198,32 @@ body {
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+    
+    /* フェード処理を親要素に集約 */
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
 }
 
+/* 画像スタイル */
 #video-title-img {
     display: block;
     width: 20vw;
     max-width: 600px;
     height: auto;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+}
+
+/* テキストスタイル（追加） */
+/* テキストスタイル */
+#video-title-text {
+    display: block;
+    /* 最小1.8rem〜画面幅に応じて変化〜最大4rem に大きく調整 */
+    font-size: clamp(1.8rem, 4vw, 4rem); 
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1.2;
+    white-space: pre-wrap;                  /* 改行文字が含まれていてもそのまま表示 */
+    filter: drop-shadow(0 0 15px rgba(0,0,0,1));
 }
 
 /* 右側インデックス ---------------------------*/
@@ -348,10 +364,16 @@ body {
 .line {
   display: flex;
   align-items: baseline; 
+  justify-content: center; /* 全体を中央寄せ */
   gap: 0;
+  width: 100%;
 }
 
-/* アニメーション用のスタイル-------*/
+#typing-target {
+  text-align: center;
+  display: inline-block;
+}
+
 #typing-target span {
   opacity: 0; 
   transform: translateY(5px); 
@@ -366,23 +388,24 @@ body {
 
 /* 各要素の配色とサイズ調整-------------*/
 /* font-size を rem ではなく、親からの倍率（em）にすることで、画面幅に合わせて連動して縮むようになります */
-.keyword  { color: var(--keyword-color); font-size: 1.1em; } /* 例：基準より少し大きく */
-.variable { color: var(--variable-color); font-size: 1.25em; }
+.keyword  { color: var(--keyword-color); /*font-size: 1.1em;*/ font-weight: bold; } /* 例：基準より少し大きく */
+.variable { color: var(--variable-color); /*font-size: 1.25em;*/  }
 .function { color: var(--function-color); }
 .symbol   { color: var(--symbol-color); }
 .text     { color: var(--text-default); opacity: 0.8; }
-.empty    { color: var(--text-default); opacity: 0.8; font-size: 0.3em; }
+.empty    { color: var(--text-default); opacity: 0.8; /*font-size: 0.3em;*/ }
 
 /* 「最適」の強調デザイン */
 .optimum {
   color: var(--string-color);
+  font-weight: bold;
+  
   /* 画面幅連動（vw）にしつつ、通常の文字より大きくなるようにバランスを調整 */
-  font-size: clamp(1.1rem, 5.5vw, 5.5rem);
-  font-weight: 800;
+  /* font-size: clamp(1.1rem, 5.5vw, 5.5rem);
   margin: 0 0.05em; 
   position: relative;
   text-shadow: 0 0 15px rgba(206, 145, 120, 0.3);
-  vertical-align: -0.05em;
+  vertical-align: -0.05em; */
 }
 
 /* カーソル */
@@ -692,6 +715,10 @@ h2.section-title {
     color: #db7500; 
 }
 
+.skill-extra.other {
+    color: #ffffff; 
+}
+
 .skill-item.learning {
     opacity: 0.6;
     border-style: dashed;
@@ -752,7 +779,7 @@ h2.section-title {
 /* イラスト・ビジュアル部分のプレースホルダー */
 .visual-placeholder {
     position: relative;
-    background-color: #3f3f93; /* 手書き画像に近い青紫 */
+    background-color: #000000; /* 手書き画像に近い青紫 */
     aspect-ratio: 1 / 1;
     width: 85%;
     margin: 0 auto;
@@ -769,6 +796,27 @@ h2.section-title {
     height: 100%;
     object-fit: cover; /* 枠線に合わせて綺麗にトリミング */
     z-index: 2;
+}
+
+.img1 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.img2 {
+    top: 0;
+    left: 20%;
+    width: auto;
+    height: 100%;
+}
+
+.img3 {
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
 }
 
 /* 画像ファイルが読み込めない、または設定されていない時用のテキスト */
@@ -790,7 +838,7 @@ h2.section-title {
 
 /* テキストコンポーネント（共通のフォントスタイル） */
 .phrase-heading {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: bold;
     line-height: 1.4;
     margin-top: 0;
@@ -821,7 +869,7 @@ h2.section-title {
 }
 
 /* セクション2: こだわり部分の余白調整 */
-.hobby-section {
+.section2 {
     margin-top: 100px;
 }
 
@@ -843,7 +891,7 @@ h2.section-title {
         flex-direction: column-reverse;
     }
 
-    .hobby-section {
+    .section2 {
         display: flex;
         flex-direction: column;
     }
